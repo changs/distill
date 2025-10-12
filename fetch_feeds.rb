@@ -12,6 +12,8 @@ ActiveRecord::Base.establish_connection(db_config['development'])
 ActiveSupport.to_time_preserves_timezone = :zone
 
 Feed.find_or_create_by!(url: "https://caseyhandmer.wordpress.com/feed/", title: "Casey's Blog")
+Feed.find_or_create_by!(url: "https://lubieniebieski.pl/feed.xml", title: "Lubię Niebieski")
+Feed.find_or_create_by!(url: "https://world.hey.com/dhh/feed.atom", title: "David Heinemeier Hansson")
 
 Feed.find_each do |feed_record|
   xml = HTTParty.get(feed_record.url).body
