@@ -1,0 +1,9 @@
+<div class='back'><a href='/'>← Back to feeds</a></div>
+<h1><%= h(@content.title) %></h1>
+<div class='meta'>
+  Published: <%= @content.published_at&.strftime('%B %d, %Y at %I:%M %p') || 'Unknown' %><br>
+  Source: <a href='<%= h(@content.url) %>' target='_blank'><%= h(@content.url) %></a>
+</div>
+<div class='content'>
+  <%= raw(@content.content) %>
+</div>
