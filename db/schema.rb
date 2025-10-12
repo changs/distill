@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_12_181607) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_12_203800) do
+  create_table "contents", force: :cascade do |t|
+    t.integer "feed_id", null: false
+    t.string "url", null: false
+    t.string "title"
+    t.text "content"
+    t.text "summary"
+    t.datetime "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feed_id"], name: "index_contents_on_feed_id"
+    t.index ["published_at"], name: "index_contents_on_published_at"
+    t.index ["url"], name: "index_contents_on_url", unique: true
+  end
+
   create_table "feeds", force: :cascade do |t|
     t.string "url", null: false
     t.string "title"
@@ -19,4 +33,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_12_181607) do
     t.datetime "updated_at", null: false
     t.index ["url"], name: "index_feeds_on_url", unique: true
   end
+
+  add_foreign_key "contents", "feeds"
 end
