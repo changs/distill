@@ -1,26 +1,34 @@
 body {
-  font-family: Georgia, serif;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-size: 1.3em;
-  line-height: 1.8;
+  font-family: 'Bookerly', Georgia, 'Times New Roman', serif;
+  max-width: 100%;
+  margin: 0;
+  padding: 5%;
+  font-size: 1.4em;
+  line-height: 1.6;
+  color: #000;
+  background: #fff;
+  text-align: left;
+  word-spacing: 0.05em;
 }
 
 h1 {
-  color: #333;
-  font-size: 2em;
+  color: #000;
+  font-size: 1.8em;
+  font-weight: bold;
+  line-height: 1.3;
+  margin: 0.5em 0 0.8em 0;
 }
 
 .feed {
-  margin-bottom: 40px;
+  margin-bottom: 3em;
 }
 
 .feed h2 {
-  color: #666;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 10px;
-  font-size: 1.5em;
+  color: #000;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.3em;
+  font-size: 1.4em;
+  margin: 1em 0 0.8em 0;
 }
 
 .content-list {
@@ -29,55 +37,80 @@ h1 {
 }
 
 .content-item {
-  margin: 20px 0;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 5px;
+  margin: 1.5em 0;
+  padding: 1em 0;
+  border-bottom: 1px solid #ccc;
 }
 
 .content-item h3 {
-  margin: 0 0 10px 0;
-  font-size: 1.3em;
+  margin: 0 0 0.5em 0;
+  font-size: 1.2em;
+  line-height: 1.4;
 }
 
 .content-item a {
-  color: #0066cc;
-  text-decoration: none;
-}
-
-.content-item a:hover {
+  color: #000;
   text-decoration: underline;
 }
 
 .meta {
-  color: #666;
-  font-size: 1em;
+  color: #444;
+  font-size: 0.9em;
 }
 
 .back {
-  margin-bottom: 30px;
-  font-size: 1.1em;
+  margin-bottom: 1.5em;
+  font-size: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #ccc;
 }
 
 .back a {
-  color: #0066cc;
-  text-decoration: none;
-}
-
-.back a:hover {
+  color: #000;
   text-decoration: underline;
 }
 
 .content {
-  line-height: 1.8;
+  line-height: 1.7;
   font-size: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4 {
+  color: #000;
+  margin: 1.2em 0 0.6em 0;
+  line-height: 1.3;
+  text-align: left;
 }
 
 .content p {
-  margin: 1em 0;
+  margin: 0 0 1em 0;
+  text-indent: 0;
 }
 
 .content img {
   max-width: 100%;
   height: auto;
+  display: block;
+  margin: 1.5em 0;
+}
+
+.content a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.content ul,
+.content ol {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+
+.content li {
+  margin: 0.5em 0;
 }
