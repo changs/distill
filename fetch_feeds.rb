@@ -1,6 +1,6 @@
 require 'feedjira'
 require 'httparty'
-require 'readability'
+require 'nokogiri'
 require 'active_record'
 require 'yaml'
 require_relative 'models/feed'
@@ -25,12 +25,25 @@ Feed.find_each do |feed_record|
 
     puts "Fetching: #{entry.title}"
     html = HTTParty.get(entry.url).body
-    document = Readability::Document.new(html, tags: %w[div p img a ul li], attributes: %w[src href])
+    doc = Nokogiri::HTML(html)
+
+    # Try to find the main article content
+    article = doc.at_css('article, .post, .entry-content, .article-content, main, [role="main"]')
+
+    if article
+      # Remove unwanted elements
+      article.css('script, style, nav, header, footer, aside, .sidebar, .comments, .related, .share, .social').remove
+
+      content_html = article.inner_html
+    else
+      # Fallback: try to find body content
+      content_html = doc.at_css('body')&.inner_html || html
+    end
 
     feed_record.contents.create!(
       url: entry.url,
       title: entry.title,
-      content: document.content,
+      content: content_html,
       summary: entry.summary,
       published_at: entry.published
     )
