@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_12_203800) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_15_000000) do
   create_table "contents", force: :cascade do |t|
     t.integer "feed_id", null: false
     t.string "url", null: false
@@ -20,8 +20,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_12_203800) do
     t.datetime "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "read", default: false, null: false
     t.index ["feed_id"], name: "index_contents_on_feed_id"
     t.index ["published_at"], name: "index_contents_on_published_at"
+    t.index ["read"], name: "index_contents_on_read"
     t.index ["url"], name: "index_contents_on_url", unique: true
   end
 

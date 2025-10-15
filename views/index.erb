@@ -5,8 +5,13 @@
     <h2><%= h(feed.title || feed.url) %></h2>
     <ul class='content-list'>
       <% feed.contents.order(published_at: :desc).each do |content| %>
-        <li class='content-item'>
-          <h3><a href='/content/<%= content.id %>'><%= h(content.title) %></a></h3>
+        <li class='content-item <%= 'read' if content.read %>'>
+          <h3>
+            <a href='/content/<%= content.id %>'><%= h(content.title) %></a>
+            <form method='post' action='/content/<%= content.id %>/toggle_read' style='display: inline;'>
+              <button type='submit' class='read-toggle'><%= content.read ? 'Mark Unread' : 'Mark Read' %></button>
+            </form>
+          </h3>
           <div class='meta'>
             Published: <%= content.published_at&.strftime('%B %d, %Y') || 'Unknown' %>
           </div>

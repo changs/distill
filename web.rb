@@ -19,6 +19,13 @@ class DistillApp
     when /^\/content\/(\d+)$/
       content_id = $1.to_i
       render_content(content_id)
+    when /^\/content\/(\d+)\/toggle_read$/
+      if request.post?
+        content_id = $1.to_i
+        toggle_read(content_id, request)
+      else
+        [405, {'content-type' => 'text/html'}, ['<h1>Method Not Allowed</h1>']]
+      end
     else
       [404, {'content-type' => 'text/html'}, ['<h1>Not Found</h1>']]
     end
@@ -41,6 +48,15 @@ class DistillApp
     @title = @content.title
     html = render_template('views/content.erb', 'views/layout.erb')
     [200, {'content-type' => 'text/html; charset=utf-8'}, [html]]
+  end
+
+  def toggle_read(content_id, request)
+    content = Content.find_by(id: content_id)
+
+    return [404, {'content-type' => 'text/html; charset=utf-8'}, ['<h1>Content Not Found</h1>']] unless content
+
+    content.update(read: !content.read)
+    [303, {'location' => request.referer || '/'}, []]
   end
 
   def render_template(template_path, layout_path = nil)

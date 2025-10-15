@@ -42,6 +42,14 @@ h1 {
   border-bottom: 1px solid #ccc;
 }
 
+.content-item.read {
+  opacity: 0.5;
+}
+
+.content-item.read h3 a {
+  color: #666;
+}
+
 .content-item h3 {
   margin: 0 0 0.5em 0;
   font-size: 1.2em;
@@ -51,6 +59,22 @@ h1 {
 .content-item a {
   color: #000;
   text-decoration: underline;
+}
+
+.read-toggle {
+  display: inline-block;
+  margin-left: 1em;
+  padding: 0.3em 0.6em;
+  font-size: 0.8em;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+
+.read-toggle:hover {
+  background: #e0e0e0;
 }
 
 .meta {
